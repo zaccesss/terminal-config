@@ -1,0 +1,19 @@
+# High-contrast starter config: pure black background and light grey foreground.
+# ANSI colours are left at Alacritty's own defaults.
+
+[window]
+opacity = 1.0
+padding = { x = 10, y = 10 }
+
+[font]
+size = 13.0
+
+[font.normal]
+family = "DejaVu Sans Mono"
+
+[colors.primary]
+background = "#000000"
+foreground = "#bbbbbb"
+
+[scrolling]
+history = 10000
