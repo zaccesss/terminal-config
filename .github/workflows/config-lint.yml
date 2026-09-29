@@ -1,0 +1,39 @@
+name: Config Lint
+
+# Validates that every TOML and JavaScript config file parses.
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Validate config files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Parse every TOML file
+        run: |
+          python3 - <<'PYEOF'
+          import glob, sys, tomllib
+          for f in glob.glob("*/alacritty/alacritty.toml"):
+              tomllib.load(open(f, "rb"))
+              print("ok", f)
+          PYEOF
+
+      - name: Check every Hyper config parses
+        run: |
+          for f in */hyper/hyper.js; do
+            node --check "$f" && echo "ok $f"
+          done
