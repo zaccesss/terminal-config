@@ -15,3 +15,8 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Per-platform fonts and install paths for macOS, Linux and Windows
 - Setup and reference guides
 - CI that validates every config file parses
+- `ACCESSIBILITY.md`: the 10.9:1 contrast palette, opaque windows and font sizing.
+
+### Changed
+
+- Tidied code comments and the contributor guide.
