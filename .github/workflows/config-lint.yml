@@ -1,6 +1,6 @@
 name: Config Lint
 
-# Validates that every TOML and JavaScript config file parses.
+# validates that every TOML and JavaScript config file parses.
 
 on:
   push:

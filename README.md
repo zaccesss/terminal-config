@@ -24,5 +24,6 @@ on each platform. Palette and font choices are explained in [guides/reference.md
 
 | Path | Contents |
 | --- | --- |
+| [`ACCESSIBILITY.md`](ACCESSIBILITY.md) | The 10.9:1 contrast palette, opaque windows and font sizing |
 | `<platform>/<terminal>/` | That terminal's config file for that platform |
 | [`guides/`](guides/) | Setup walkthrough and reference |
