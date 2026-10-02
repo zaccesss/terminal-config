@@ -9,6 +9,10 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- `ACCESSIBILITY.md`: a note that the settings are preferences, a callout for live zoom in each terminal and a link to the shared accessibility statement.
+
 ### Added
 
 - Initial release: starter configs for Alacritty, Kitty and Hyper with a high-contrast palette
