@@ -2,6 +2,9 @@
 
 Every config in this repository is chosen for readability first. Alacritty, Kitty and Hyper share one palette and the same settings, so switching terminals changes nothing about how text reads.
 
+> [!NOTE]
+> Some of these settings are preferences rather than requirements. Change them freely in your own copy. If a change would help other people too, open an issue or a pull request so I can consider it for everyone.
+
 ## Vision
 
 | Need | Setting |
@@ -17,6 +20,14 @@ Every config in this repository is chosen for readability first. Alacritty, Kitt
 
 Every config starts at 13 points. Raise `size` in Alacritty, `font_size` in Kitty or `fontSize` in Hyper. Any installed monospaced font can replace the platform default listed in [guides/reference.md](guides/reference.md).
 
+> [!TIP]
+> All three terminals zoom without editing the config. Alacritty and Hyper use `Ctrl+=`, `Ctrl+-` and `Ctrl+0` (`Cmd` on macOS). Kitty uses `Ctrl+Shift+=`, `Ctrl+Shift+-` and `Ctrl+Shift+Backspace` (`Cmd+=`, `Cmd+-` and `Cmd+0` on macOS).
+
 ## Feedback wanted
 
 If something here gets in the way, open an [issue](https://github.com/zaccesss/terminal-config/issues/new/choose) describing what happened and what would work better.
+
+## The shared statement
+
+> [!NOTE]
+> I keep one shared accessibility statement for all my projects: [zaccesss/accessibility](https://github.com/zaccesss/accessibility) or on [my site](https://isaacadjei.me/accessibility). This file takes precedence where the two differ.
