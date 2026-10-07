@@ -1,6 +1,6 @@
 # Accessibility
 
-Every config in this repository is chosen for readability first. Alacritty, Kitty and Hyper share one palette and the same settings, so switching terminals changes nothing about how text reads.
+Every config in this repository is chosen for readability first. Every terminal shares one High Contrast palette with a light and a dark half, so switching terminals changes nothing about how text reads.
 
 > [!NOTE]
 > Some of these settings are preferences rather than requirements. Change them freely in your own copy. If a change would help other people too, open an issue or a pull request so I can consider it for everyone.
@@ -9,11 +9,14 @@ Every config in this repository is chosen for readability first. Alacritty, Kitt
 
 | Need | Setting |
 | --- | --- |
-| Low or monocular vision | Light grey `#bbbbbb` text on pure black `#000000`, a contrast ratio of 10.9:1, well above the WCAG AAA level of 7:1 |
-| Glare over long sessions | Light grey rather than pure white text, which glares against a black background |
+| Low or monocular vision | Dark mode: near-white `#e0e0e0` text on pure black, 15.9:1. Light mode: `#1f1f1f` on white, 16.5:1. Both well above the WCAG AAA level of 7:1 |
+| Telling colours apart | All 16 colours are set. Dark mode uses saturated colours that are easy to tell apart; every light-mode colour reaches 7:1 on white. The full table is in [guides/high-contrast.md](guides/high-contrast.md) |
+| Working in light and dark | iTerm2, Kitty, Windows Terminal and Ptyxis switch with the system appearance. Terminal.app gets a separate light and dark profile |
+| Bold text | Bold keeps its colour rather than switching to the softer bright row |
+| Glare over long sessions | Near-white rather than pure white text in dark mode |
 | Contrast lost to the background | Windows are fully opaque (`1.0`), since a see-through window lets whatever sits behind it lower the contrast |
 | Text crowding the edge | Alacritty keeps 10 px of padding between the text and the window frame |
-| Colour vision differences | The ANSI colour slots stay at each terminal's defaults, so a palette built for a specific colour vision difference can go on top without fighting this one |
+| Colour vision differences | The palette is one JSON file, so a version tuned for a specific colour vision difference is one edit and one run of `scripts/build-themes.py` away |
 | Losing track in long output | 10,000 lines of scrollback |
 
 ## Font size

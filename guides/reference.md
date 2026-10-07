@@ -4,15 +4,18 @@
 
 | Setting | Value | Why |
 | --- | --- | --- |
-| Background | `#000000` | Pure black gives the strongest contrast against light text and is easy on the eyes in a dark room. |
-| Foreground | `#bbbbbb` | Light grey rather than pure white, which glares against a pure black background over a long session. |
-| ANSI colours | terminal default | Left alone rather than invented, since a stylised palette is a matter of taste and is easy to add on top. |
+| Dark background | `#000000` | Pure black gives the strongest contrast against light text and is easy on the eyes in a dark room. |
+| Dark text | `#e0e0e0` | Near-white rather than pure white, which glares against pure black over a long session. |
+| Light background and text | `#ffffff` and `#1f1f1f` | The same contrast, the other way round. |
+| ANSI colours | all 16 set, per mode | So every terminal draws the same command in the same colours. Every value is in [high-contrast.md](high-contrast.md). |
 
-## Why black and light grey, not a stylised theme
+## Why one palette for every terminal
 
 A published theme looks coordinated but is chosen for looks. This palette is chosen for contrast and
-readability, the same choice across every terminal so switching between them changes nothing about
-how text reads. Add a theme on top if you want colour, the ANSI slots are untouched.
+readability: saturated colours that are easy to tell apart, with every light-mode colour at 7:1 or
+more. Using it in every terminal means switching between them changes nothing about how text reads.
+Leaving the 16 colours at each terminal's defaults would make the same output look different in
+each app.
 
 ## Other settings
 

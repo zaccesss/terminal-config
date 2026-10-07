@@ -1,0 +1,23 @@
+{
+  "name": "High Contrast",
+  "dark": {
+    "background": "#000000",
+    "foreground": "#e0e0e0",
+    "bold": "#ededed",
+    "cursor": "#ffffff",
+    "selection_background": "#273d4c",
+    "selection_foreground": "#ffffff",
+    "ansi": ["#35424c", "#ff0f00", "#00ff2f", "#fff500", "#8ac9ff", "#ff66ff", "#6ff7ff", "#f2f2f2"],
+    "bright": ["#465c6d", "#df6c5a", "#79be7e", "#ffdb20", "#67b5ed", "#ff99ff", "#84dde0", "#ffffff"]
+  },
+  "light": {
+    "background": "#ffffff",
+    "foreground": "#1f1f1f",
+    "bold": "#121212",
+    "cursor": "#000000",
+    "selection_background": "#b3c9d8",
+    "selection_foreground": "#000000",
+    "ansi": ["#1f1f1f", "#b40b00", "#006813", "#735300", "#0059a5", "#9f009f", "#006369", "#3c4650"],
+    "bright": ["#4a5761", "#961b08", "#05590b", "#6e4200", "#074f83", "#8a008a", "#055558", "#000000"]
+  }
+}
