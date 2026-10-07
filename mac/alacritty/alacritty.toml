@@ -1,5 +1,9 @@
-# High-contrast starter config: pure black background and light grey foreground.
-# ANSI colours are left at Alacritty's own defaults.
+# High-contrast starter config. Colours come from the High Contrast palette
+# (palette/high-contrast.json). Alacritty cannot follow the system light and dark setting, so it
+# imports the dark half; change the import to high-contrast-light.toml for a light window.
+
+[general]
+import = ["high-contrast-dark.toml"]
 
 [window]
 opacity = 1.0
@@ -10,10 +14,6 @@ size = 13.0
 
 [font.normal]
 family = "SF Mono"
-
-[colors.primary]
-background = "#000000"
-foreground = "#bbbbbb"
 
 [scrolling]
 history = 10000

@@ -1,6 +1,8 @@
 name: Config Lint
 
-# validates that every TOML and JavaScript config file parses.
+# confirms every generated theme file matches palette/high-contrast.json and every colour meets its
+# contrast floor, shellchecks the macOS installer and validates that every TOML and JavaScript
+# config file parses.
 
 on:
   push:
@@ -23,11 +25,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
 
+      - name: Confirm every generated theme matches the palette and meets its contrast floor
+        run: python3 scripts/build-themes.py --check
+
+      - name: Shellcheck the macOS installer
+        run: shellcheck --severity=warning mac/install.sh
+
       - name: Parse every TOML file
         run: |
           python3 - <<'PYEOF'
           import glob, sys, tomllib
-          for f in glob.glob("*/alacritty/alacritty.toml"):
+          for f in glob.glob("*/alacritty/*.toml"):
               tomllib.load(open(f, "rb"))
               print("ok", f)
           PYEOF
