@@ -2,12 +2,16 @@
 #
 # applies the High Contrast theme to every Mac terminal this repo covers. Safe to run again: each
 # step checks what is already in place first. Terminal.app and iTerm2 are set up always; Kitty and
-# Alacritty only when their config folder already exists.
+# Alacritty only when their config folder already exists. Terminal.app also gets a small
+# login agent that switches its profile with macOS's light and dark setting.
 
 set -Eeuo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly HERE
+readonly AGENT_LABEL="local.terminal-config.appearance"
+readonly AGENT_BIN="${HOME}/.local/bin/terminal-appearance"
+readonly AGENT_PLIST="${HOME}/Library/LaunchAgents/${AGENT_LABEL}.plist"
 
 info() { printf '[INFO] %s\n' "$1"; }
 ok() { printf '[ OK ] %s\n' "$1"; }
@@ -53,6 +57,39 @@ PY
     done
 }
 
+# Terminal.app has no light and dark pair of its own, so a login agent built from
+# terminal-app/terminal-appearance.swift switches its profile whenever macOS changes appearance
+appearance_agent() {
+    local source="${HERE}/terminal-app/terminal-appearance.swift"
+    mkdir -p "$(dirname "$AGENT_BIN")" "$(dirname "$AGENT_PLIST")"
+    if [[ ! -x "$AGENT_BIN" || "$source" -nt "$AGENT_BIN" ]]; then
+        swiftc -O "$source" -o "$AGENT_BIN"
+        info "Built ${AGENT_BIN}"
+    fi
+    cat > "$AGENT_PLIST" <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>${AGENT_LABEL}</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>${AGENT_BIN}</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+</dict>
+</plist>
+EOF
+    # reloading picks up a rebuilt binary; the first switch asks once for permission to control Terminal
+    launchctl bootout "gui/$(id -u)/${AGENT_LABEL}" 2>/dev/null || true
+    launchctl bootstrap "gui/$(id -u)" "$AGENT_PLIST"
+    info "Terminal.app now follows light and dark mode"
+}
+
 iterm2() {
     link "${HERE}/iterm2/high-contrast.json" "${HOME}/Library/Application Support/iTerm2/DynamicProfiles/high-contrast.json"
     local guid
@@ -83,6 +120,7 @@ optional_apps() {
 }
 
 terminal_app
+appearance_agent
 iterm2
 optional_apps
 ok "High Contrast theme applied"

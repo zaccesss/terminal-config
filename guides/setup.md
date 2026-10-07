@@ -22,8 +22,8 @@ Alacritty imports `high-contrast-dark.toml` from the same folder and Kitty reads
 ./mac/install.sh
 ```
 
-It adds the High Contrast Dark and High Contrast Light profiles to Terminal.app, links the iTerm2
-Dynamic Profile and makes it the default, then links the Kitty and Alacritty theme files for
+It adds the High Contrast Dark and High Contrast Light profiles to Terminal.app with a login agent
+that switches between them as macOS changes appearance, links the iTerm2 Dynamic Profile and makes it the default, then links the Kitty and Alacritty theme files for
 either one already set up.
 
 > [!NOTE]
