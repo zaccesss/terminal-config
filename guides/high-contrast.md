@@ -55,7 +55,7 @@ and hint shades, so they are exempt.
 
 | Terminal | Files | Follows light and dark |
 | --- | --- | --- |
-| Terminal.app | [`mac/terminal-app/`](../mac/terminal-app/) | No: two profiles, High Contrast Dark and High Contrast Light |
+| Terminal.app | [`mac/terminal-app/`](../mac/terminal-app/) | Yes, through a small login agent that switches between the High Contrast Dark and Light profiles |
 | iTerm2 | [`mac/iterm2/high-contrast.json`](../mac/iterm2/high-contrast.json) | Yes, one Dynamic Profile with separate light and dark colours |
 | Kitty 0.38+ | `<platform>/kitty/*-theme.auto.conf` | Yes, read automatically from the Kitty config folder |
 | Alacritty | `<platform>/alacritty/high-contrast-*.toml` | No: imports the dark half, swap the import for light |
@@ -67,5 +67,12 @@ and hint shades, so they are exempt.
 [vscode-config](https://github.com/zaccesss/vscode-config) and
 [jetbrains-config](https://github.com/zaccesss/jetbrains-config) carry the same colours for the
 integrated terminals in VS Code and the JetBrains IDEs.
+
+> [!NOTE]
+> Terminal.app has no light and dark pair of its own. `mac/install.sh` builds
+> [`terminal-appearance.swift`](../mac/terminal-app/terminal-appearance.swift) into
+> `~/.local/bin` and runs it as a login agent. It switches every tab already on a High Contrast
+> profile, plus the default for new windows, whenever macOS changes appearance; a tab put on any
+> other profile is left alone. macOS asks once for permission to let it control Terminal.
 
 Setup for each terminal is in [setup.md](setup.md).
