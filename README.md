@@ -3,6 +3,28 @@
 > One High Contrast colour palette, light and dark, for Terminal.app, iTerm2, Windows Terminal,
 > Ptyxis, GNOME Terminal, Alacritty, Kitty and Hyper, plus starter configs with per-platform fonts.
 
+## In action
+
+Screenshots in the High Contrast palette, dark and light. Each one links to a short animation of the same scene.
+
+### Shell
+
+| Dark | Light |
+| --- | --- |
+| [![Dark: the terminal in the High Contrast palette showing a coloured git log, a ripgrep search and a diff summary](docs/demo/shell-dark.webp)](docs/demo/terminal-dark.gif) | [![Light: the terminal in the High Contrast palette showing a coloured git log, a ripgrep search and a diff summary](docs/demo/shell-light.webp)](docs/demo/terminal-light.gif) |
+
+### Neovim
+
+| Dark | Light |
+| --- | --- |
+| [![Dark: Neovim with the high-contrast colour scheme editing a Python file, with the status line at the bottom](docs/demo/neovim-dark.webp)](docs/demo/terminal-dark.gif) | [![Light: Neovim with the high-contrast colour scheme editing a Python file, with the status line at the bottom](docs/demo/neovim-light.webp)](docs/demo/terminal-light.gif) |
+
+### tmux
+
+| Dark | Light |
+| --- | --- |
+| [![Dark: tmux with four coloured tabs named editor, git, search and shell, the editor window split into Neovim, git log, ripgrep and diff panes](docs/demo/tmux-dark.webp)](docs/demo/tmux-dark.gif) | [![Light: tmux with four coloured tabs named editor, git, search and shell, the editor window split into Neovim, git log, ripgrep and diff panes](docs/demo/tmux-light.webp)](docs/demo/tmux-light.gif) |
+
 ## What's here
 
 Every terminal uses the same High Contrast palette: vivid colours on black in dark mode, the same
