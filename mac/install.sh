@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 #
-# applies the High Contrast theme to every Mac terminal this repo covers. Safe to run again: each
-# step checks what is already in place first. Terminal.app and iTerm2 are set up always; Kitty and
-# Alacritty only when their config folder already exists. Terminal.app also gets a small
-# login agent that switches its profile with macOS's light and dark setting.
+# installs all eight Zacess themes in every Mac terminal this repo covers and makes Zacess Deep
+# Contrast Dark the default. Safe to run again: each step checks what is already in place first.
+# Terminal.app and iTerm2 are set up always; Kitty and Alacritty only when their config folder
+# already exists. Nothing follows the system appearance here: `zt auto` in the dotfiles turns
+# that on, using the helper this script builds from terminal-app/terminal-appearance.swift.
 
 set -Eeuo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly HERE
-readonly AGENT_LABEL="local.terminal-config.appearance"
 readonly AGENT_BIN="${HOME}/.local/bin/terminal-appearance"
-readonly AGENT_PLIST="${HOME}/Library/LaunchAgents/${AGENT_LABEL}.plist"
+readonly DEFAULT_THEME="Zacess Deep Contrast Dark"
 
 info() { printf '[INFO] %s\n' "$1"; }
 ok() { printf '[ OK ] %s\n' "$1"; }
@@ -33,10 +33,10 @@ link() {
 running() { pgrep -x "$1" >/dev/null 2>&1; }
 
 terminal_app() {
-    local mode file
-    for mode in Dark Light; do
-        file="${HERE}/terminal-app/High Contrast ${mode}.terminal"
-        if defaults read com.apple.Terminal "Window Settings" 2>/dev/null | grep -q "\"High Contrast ${mode}\" ="; then
+    local file name
+    for file in "${HERE}"/terminal-app/*.terminal; do
+        name="$(basename "$file" .terminal)"
+        if defaults read com.apple.Terminal "Window Settings" 2>/dev/null | grep -q "\"${name}\" ="; then
             continue
         fi
         if running Terminal; then
@@ -53,74 +53,67 @@ prefs.setdefault("Window Settings", {})[profile["name"]] = profile
 subprocess.run(["defaults", "import", "com.apple.Terminal", "-"], input=plistlib.dumps(prefs), check=True)
 PY
         fi
-        info "Added the High Contrast ${mode} profile to Terminal.app"
+        info "Added the ${name} profile to Terminal.app"
     done
+    if [[ "$(defaults read com.apple.Terminal "Default Window Settings" 2>/dev/null || true)" != "$DEFAULT_THEME" ]]; then
+        if running Terminal; then
+            osascript -e "tell application \"Terminal\" to set default settings to settings set \"${DEFAULT_THEME}\"" \
+                -e "tell application \"Terminal\" to set startup settings to settings set \"${DEFAULT_THEME}\"" >/dev/null
+        else
+            defaults write com.apple.Terminal "Default Window Settings" -string "$DEFAULT_THEME"
+            defaults write com.apple.Terminal "Startup Window Settings" -string "$DEFAULT_THEME"
+        fi
+        info "Made ${DEFAULT_THEME} Terminal.app's default profile"
+    fi
 }
 
-# Terminal.app has no light and dark pair of its own, so a login agent built from
-# terminal-app/terminal-appearance.swift switches its profile whenever macOS changes appearance
-appearance_agent() {
+# Terminal.app has no light and dark pair of its own, so `zt auto` runs this helper as a login
+# agent; it is built here so that command never needs a compiler of its own
+appearance_helper() {
     local source="${HERE}/terminal-app/terminal-appearance.swift"
-    mkdir -p "$(dirname "$AGENT_BIN")" "$(dirname "$AGENT_PLIST")"
+    mkdir -p "$(dirname "$AGENT_BIN")"
     if [[ ! -x "$AGENT_BIN" || "$source" -nt "$AGENT_BIN" ]]; then
         swiftc -O "$source" -o "$AGENT_BIN"
         info "Built ${AGENT_BIN}"
     fi
-    cat > "$AGENT_PLIST" <<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>Label</key>
-    <string>${AGENT_LABEL}</string>
-    <key>ProgramArguments</key>
-    <array>
-        <string>${AGENT_BIN}</string>
-    </array>
-    <key>RunAtLoad</key>
-    <true/>
-    <key>KeepAlive</key>
-    <true/>
-</dict>
-</plist>
-EOF
-    # reloading picks up a rebuilt binary; the first switch asks once for permission to control Terminal
-    launchctl bootout "gui/$(id -u)/${AGENT_LABEL}" 2>/dev/null || true
-    launchctl bootstrap "gui/$(id -u)" "$AGENT_PLIST"
-    info "Terminal.app now follows light and dark mode"
 }
 
 iterm2() {
-    link "${HERE}/iterm2/high-contrast.json" "${HOME}/Library/Application Support/iTerm2/DynamicProfiles/high-contrast.json"
+    local profiles="${HOME}/Library/Application Support/iTerm2/DynamicProfiles"
+    # the earlier single-profile file is replaced by zacess.json, which keeps its Guid
+    if [[ -L "${profiles}/high-contrast.json" ]]; then
+        rm "${profiles}/high-contrast.json"
+    fi
+    link "${HERE}/iterm2/zacess.json" "${profiles}/zacess.json"
     local guid
-    guid="$(/usr/bin/python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["Profiles"][0]["Guid"])' "${HERE}/iterm2/high-contrast.json")"
+    guid="$(/usr/bin/python3 -c 'import json,sys; print(next(p["Guid"] for p in json.load(open(sys.argv[1]))["Profiles"] if p["Name"] == sys.argv[2]))' "${HERE}/iterm2/zacess.json" "$DEFAULT_THEME")"
     if [[ "$(defaults read com.googlecode.iterm2 "Default Bookmark Guid" 2>/dev/null || true)" == "$guid" ]]; then
         return
     fi
     if running iTerm2; then
-        warn "iTerm2 is open: pick High Contrast under Settings > Profiles > Other Actions > Set as Default"
+        warn "iTerm2 is open: pick ${DEFAULT_THEME} under Settings > Profiles > Other Actions > Set as Default"
     else
         defaults write com.googlecode.iterm2 "Default Bookmark Guid" -string "$guid"
-        info "Made High Contrast the default iTerm2 profile"
+        info "Made ${DEFAULT_THEME} the default iTerm2 profile"
     fi
 }
 
 optional_apps() {
     local file
     if [[ -d "${HOME}/.config/kitty" ]]; then
-        for file in dark-theme.auto.conf light-theme.auto.conf no-preference-theme.auto.conf; do
-            link "${HERE}/kitty/${file}" "${HOME}/.config/kitty/${file}"
+        for file in "${HERE}"/kitty/zacess-*.conf; do
+            link "$file" "${HOME}/.config/kitty/$(basename "$file")"
         done
     fi
     if [[ -d "${HOME}/.config/alacritty" ]]; then
-        for file in high-contrast-dark.toml high-contrast-light.toml; do
-            link "${HERE}/alacritty/${file}" "${HOME}/.config/alacritty/${file}"
+        for file in "${HERE}"/alacritty/zacess-*.toml; do
+            link "$file" "${HOME}/.config/alacritty/$(basename "$file")"
         done
     fi
 }
 
 terminal_app
-appearance_agent
+appearance_helper
 iterm2
 optional_apps
-ok "High Contrast theme applied"
+ok "All eight Zacess themes installed, ${DEFAULT_THEME} is the default"

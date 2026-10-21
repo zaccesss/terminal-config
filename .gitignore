@@ -1,0 +1,4 @@
+# written by zt auto, so Kitty follows the system only while that is on
+*/kitty/dark-theme.auto.conf
+*/kitty/light-theme.auto.conf
+*/kitty/no-preference-theme.auto.conf
