@@ -1,6 +1,6 @@
 # Accessibility
 
-Every config in this repository is chosen for readability first. Every terminal shares one High Contrast palette with a light and a dark half, so switching terminals changes nothing about how text reads.
+Every config in this repository is chosen for readability first. Every terminal shares the eight Zacess themes with Zacess Deep Contrast Dark as the default, so switching terminals changes nothing about how text reads.
 
 > [!NOTE]
 > Some of these settings are preferences rather than requirements. Change them freely in your own copy. If a change would help other people too, open an issue or a pull request so I can consider it for everyone.
@@ -9,11 +9,10 @@ Every config in this repository is chosen for readability first. Every terminal 
 
 | Need | Setting |
 | --- | --- |
-| Low or monocular vision | Dark mode: near-white `#e0e0e0` text on pure black, 15.9:1. Light mode: `#1f1f1f` on white, 16.5:1. Both well above the WCAG AAA level of 7:1 |
-| Telling colours apart | All 16 colours are set. Dark mode uses saturated colours that are easy to tell apart; every light-mode colour reaches 7:1 on white. The full table is in [guides/high-contrast.md](guides/high-contrast.md) |
-| Working in light and dark | iTerm2, Kitty, Windows Terminal and Ptyxis switch with the system appearance. Terminal.app does too, through the login agent `mac/install.sh` sets up |
+| Low or monocular vision | Zacess Deep Contrast Dark: white `#ffffff` text on pure black, 21:1, with deep, fully saturated colours at 7:1 or more. Zacess Deep Contrast Light: black on white, 21:1. Both well above the WCAG AAA level of 7:1 |
+| Telling colours apart | All 16 colours are set in every theme. The dark themes hold every colour to 7:1; the light themes keep their coloured slots vivid at 4.5:1 or more, with black, white and the greys at 7:1. The full tables are in [guides/themes.md](guides/themes.md) |
+| Working in light and dark | The theme stays fixed until it is changed. [guides/themes.md](guides/themes.md) lists how each terminal can follow the system instead |
 | Bold text | Bold keeps its colour rather than switching to the softer bright row |
-| Glare over long sessions | Near-white rather than pure white text in dark mode |
 | Contrast lost to the background | Windows are fully opaque (`1.0`), since a see-through window lets whatever sits behind it lower the contrast |
 | Text crowding the edge | Alacritty keeps 10 px of padding between the text and the window frame |
 | Colour vision differences | The palette is one JSON file, so a version tuned for a specific colour vision difference is one edit and one run of `scripts/build-themes.py` away |

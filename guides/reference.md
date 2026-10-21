@@ -7,7 +7,7 @@
 | Dark background | `#000000` | Pure black gives the strongest contrast against light text and is easy on the eyes in a dark room. |
 | Dark text | `#e0e0e0` | Near-white rather than pure white, which glares against pure black over a long session. |
 | Light background and text | `#ffffff` and `#1f1f1f` | The same contrast, the other way round. |
-| ANSI colours | all 16 set, per mode | So every terminal draws the same command in the same colours. Every value is in [high-contrast.md](high-contrast.md). |
+| ANSI colours | all 16 set, per theme | So every terminal draws the same command in the same colours. Every value is in [themes.md](themes.md). |
 
 ## Why one palette for every terminal
 

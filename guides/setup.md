@@ -11,10 +11,12 @@ does not exist. Restart the terminal afterwards.
 | Kitty | `~/.config/kitty/kitty.conf` | `~/.config/kitty/kitty.conf` | not available |
 | Hyper | `~/.hyper.js` | `~/.hyper.js` | `%APPDATA%\Hyper\.hyper.js` |
 
-## The High Contrast theme
+## Zacess themes
 
-Alacritty imports `high-contrast-dark.toml` from the same folder and Kitty reads its
-`*-theme.auto.conf` files from the same folder, so copy those alongside the main config.
+Alacritty imports `zacess-deep-contrast-dark.toml` from the same folder and Kitty includes
+`zacess-deep-contrast-dark.conf`, so copy the `zacess-*` files alongside the main config. Change
+that one line to switch theme. The eight themes and how each terminal switches are in
+[themes.md](themes.md).
 
 ### macOS
 
@@ -22,33 +24,36 @@ Alacritty imports `high-contrast-dark.toml` from the same folder and Kitty reads
 ./mac/install.sh
 ```
 
-It adds the High Contrast Dark and High Contrast Light profiles to Terminal.app with a login agent
-that switches between them as macOS changes appearance, links the iTerm2 Dynamic Profile and makes it the default, then links the Kitty and Alacritty theme files for
-either one already set up.
+It adds a Terminal.app profile for each of the eight themes and makes Zacess Deep Contrast Dark the
+default, links the iTerm2 Dynamic Profiles and makes Zacess Deep Contrast Dark iTerm2's default,
+then links the Kitty and Alacritty theme files for either one already set up. It also builds the
+helper that switches Terminal.app with the system, without starting it.
 
 > [!NOTE]
 > With Terminal.app open, importing a profile opens one window per profile; close them once the
-> profiles appear under Settings > Profiles. With iTerm2 open, pick High Contrast under
+> profiles appear under Settings > Profiles. With iTerm2 open, pick Zacess Deep Contrast Dark under
 > Settings > Profiles > Other Actions > Set as Default instead.
 
 ### Linux
 
-- **Ptyxis** (Ubuntu 25.10 and later): copy `linux/ptyxis/high-contrast.palette` to
-  `~/.local/share/org.gnome.Ptyxis/palettes/`, then pick High Contrast under Preferences > Profile.
-- **GNOME Terminal** (Ubuntu 24.04): `dconf load` the file in `linux/gnome-terminal/` onto a
+- **Ptyxis** (Ubuntu 25.10 and later): copy `linux/ptyxis/zacess-*.palette` to
+  `~/.local/share/org.gnome.Ptyxis/palettes/`, then pick Zacess Deep Contrast Dark under
+  Preferences > Profile.
+- **GNOME Terminal** (Ubuntu 24.04): `dconf load` a theme's file in `linux/gnome-terminal/` onto a
   profile, as its first lines show.
 
 ### Windows Terminal
 
-Copy `windows/windows-terminal/high-contrast.json` to
-`%LOCALAPPDATA%\Microsoft\Windows Terminal\Fragments\HighContrast\`, then set the colour scheme
-pair in `settings.json`:
+Copy `windows/windows-terminal/zacess.json` to
+`%LOCALAPPDATA%\Microsoft\Windows Terminal\Fragments\Zacess\`, which adds all eight schemes, then
+set the colour scheme in `settings.json`:
 
 ```json
-"profiles": { "defaults": { "colorScheme": { "dark": "High Contrast Dark", "light": "High Contrast Light" }, "intenseTextStyle": "bold" } }
+"profiles": { "defaults": { "colorScheme": "Zacess Deep Contrast Dark", "intenseTextStyle": "bold" } }
 ```
 
-`intenseTextStyle` keeps bold text in its own colour rather than the softer bright row.
+A `{ "dark": ..., "light": ... }` pair in place of the name follows the system instead.
+`intenseTextStyle` keeps bold text in its own colour rather than the bright row.
 
 ## Examples
 

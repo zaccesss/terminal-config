@@ -1,14 +1,18 @@
-// Switches Terminal.app between the High Contrast Dark and High Contrast Light profiles whenever
-// macOS changes between dark and light appearance. Terminal.app has no light and dark pair of its
-// own, unlike iTerm2, Warp, Kitty and VS Code, so this small agent fills the gap.
+// Switches Terminal.app between a dark and a light profile whenever macOS changes between dark and
+// light appearance. Terminal.app has no light and dark pair of its own, so this small agent fills
+// the gap. It only runs while following the system is turned on, which `zt auto` in the dotfiles
+// does; the two profile names come from its arguments and default to the Zacess Deep Contrast pair.
 //
-// Only tabs already on one of the two High Contrast profiles are switched, so a tab deliberately
-// put on another profile is left alone. Runs as a LaunchAgent, see install.sh.
+// Only tabs already on one of the two profiles or on the earlier High Contrast pair are switched.
+// A tab deliberately put on another profile is left alone. Runs as a LaunchAgent.
 
 import Foundation
 
-let darkProfile = "High Contrast Dark"
-let lightProfile = "High Contrast Light"
+let arguments = CommandLine.arguments
+let darkProfile = arguments.count > 1 ? arguments[1] : "Zacess Deep Contrast Dark"
+let lightProfile = arguments.count > 2 ? arguments[2] : "Zacess Deep Contrast Light"
+// tabs still on the profiles the Zacess pair replaced move over on the next switch
+let earlierProfiles = ["High Contrast Dark", "High Contrast Light"]
 
 func systemIsDark() -> Bool {
     // the global AppleInterfaceStyle key only exists while dark mode is on
@@ -56,13 +60,14 @@ func apply() {
         return
     }
 
+    let switchFrom = ([other] + earlierProfiles).map { "\"\($0)\"" }.joined(separator: ", ")
     let script = """
     tell application "Terminal"
         set default settings to settings set "\(wanted)"
         set startup settings to settings set "\(wanted)"
         repeat with w in windows
             repeat with t in tabs of w
-                if name of current settings of t is "\(other)" then
+                if name of current settings of t is in {\(switchFrom)} then
                     set current settings of t to settings set "\(wanted)"
                 end if
             end repeat
