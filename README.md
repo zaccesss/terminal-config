@@ -1,17 +1,19 @@
 # terminal-config
 
-> One High Contrast colour palette, light and dark, for Terminal.app, iTerm2, Windows Terminal,
-> Ptyxis, GNOME Terminal, Alacritty, Kitty and Hyper, plus starter configs with per-platform fonts.
+> The eight Zacess colour themes for Terminal.app, iTerm2, Windows Terminal, Ptyxis, GNOME
+> Terminal, Alacritty, Kitty and Hyper, with Zacess Deep Contrast Dark as the default, plus starter
+> configs with per-platform fonts.
 
 ## In action
 
-Screenshots in the High Contrast palette, dark and light. Each one links to a short animation of the same scene.
+Screenshots in the earlier High Contrast palette, dark and light, taken before the switch to the
+Zacess themes. Each one links to a short animation of the same scene.
 
 ### Shell
 
 | Dark | Light |
 | --- | --- |
-| [![Dark: the terminal in the High Contrast palette showing a coloured git log, a ripgrep search and a diff summary](docs/demo/shell-dark.webp)](docs/demo/terminal-dark.gif) | [![Light: the terminal in the High Contrast palette showing a coloured git log, a ripgrep search and a diff summary](docs/demo/shell-light.webp)](docs/demo/terminal-light.gif) |
+| [![Dark: the terminal in the earlier High Contrast palette showing a coloured git log, a ripgrep search and a diff summary](docs/demo/shell-dark.webp)](docs/demo/terminal-dark.gif) | [![Light: the terminal in the earlier High Contrast palette showing a coloured git log, a ripgrep search and a diff summary](docs/demo/shell-light.webp)](docs/demo/terminal-light.gif) |
 
 ### Neovim
 
@@ -27,12 +29,12 @@ Screenshots in the High Contrast palette, dark and light. Each one links to a sh
 
 ## What's here
 
-Every terminal uses the same High Contrast palette: vivid colours on black in dark mode, the same
-hues at 7:1 or more on white in light mode. Terminals that can follow the system appearance switch
-between the two on their own. The palette lives in one file,
-[`palette/high-contrast.json`](palette/high-contrast.json), and
-[`scripts/build-themes.py`](scripts/build-themes.py) writes every theme file from it. Colours and
-reasoning are in [guides/high-contrast.md](guides/high-contrast.md).
+Every terminal gets all eight Zacess themes from [Zacess Themes](https://github.com/zacesshq/themes),
+with Zacess Deep Contrast Dark as the default: white on pure black with deep, fully saturated
+colours. The theme stays fixed whatever the system appearance until it is changed. The colours live
+in one file, [`palette/zacess.json`](palette/zacess.json), and
+[`scripts/build-themes.py`](scripts/build-themes.py) writes every theme file from it. Every theme's
+colours and how each terminal switches are in [guides/themes.md](guides/themes.md).
 
 | Terminal | macOS | Linux | Windows |
 | --- | --- | --- | --- |
@@ -54,7 +56,7 @@ on each platform. Palette and font choices are explained in [guides/reference.md
 | Path | Contents |
 | --- | --- |
 | [`ACCESSIBILITY.md`](ACCESSIBILITY.md) | Light and dark contrast, opaque windows and font sizing |
-| [`palette/`](palette/) | The High Contrast palette, the single source for every colour |
+| [`palette/`](palette/) | The eight Zacess themes' terminal colours, the single source for every colour |
 | [`scripts/`](scripts/) | `build-themes.py`, which writes every theme file from the palette |
 | `<platform>/<terminal>/` | That terminal's config file for that platform |
 | [`guides/`](guides/) | Setup walkthrough and reference |

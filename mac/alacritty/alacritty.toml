@@ -1,9 +1,9 @@
-# High-contrast starter config. Colours come from the High Contrast palette
-# (palette/high-contrast.json). Alacritty cannot follow the system light and dark setting, so it
-# imports the dark half; change the import to high-contrast-light.toml for a light window.
+# High-contrast starter config. All eight Zacess themes sit in this folder (zacess-*.toml, from
+# palette/zacess.json) and the import below picks one, Zacess Deep Contrast Dark by default.
+# Alacritty cannot follow the system light and dark setting, so change the import to switch.
 
 [general]
-import = ["high-contrast-dark.toml"]
+import = ["zacess-deep-contrast-dark.toml"]
 
 [window]
 opacity = 1.0

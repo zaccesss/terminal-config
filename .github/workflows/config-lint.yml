@@ -1,6 +1,6 @@
 name: Config Lint
 
-# confirms every generated theme file matches palette/high-contrast.json and every colour meets its
+# confirms every generated theme file matches palette/zacess.json and every colour meets its
 # contrast floor, shellchecks the macOS installer and validates that every TOML and JavaScript
 # config file parses.
 
