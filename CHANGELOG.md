@@ -15,7 +15,7 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- The screenshots and clips are recorded again in Zacess Deep Contrast Dark and Light from VHS scripts in `docs/demo`, using the real config in a throwaway demo project. `docs/demo/record.sh` makes them all again with one command.
+- The screenshots and clips are recorded again in Zacess Deep Contrast Dark and Light, using the real config in a throwaway demo project.
 - Screenshots and short animations of the config in action, dark and light, in the README's In action section.
 - The High Contrast palette in `palette/high-contrast.json`: vivid colours on black for dark mode, the same hues at 7:1 or more on white for light mode, with all 16 colours set.
 - `scripts/build-themes.py` writes every theme file from it, plus the colour table in `guides/high-contrast.md`. CI fails on a stale file or a colour below its contrast floor.
