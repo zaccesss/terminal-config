@@ -6,26 +6,39 @@
 
 ## In action
 
-Screenshots in the earlier High Contrast palette, dark and light, taken before the switch to the
-Zacess themes. Each one links to a short animation of the same scene.
+Screenshots in Zacess Deep Contrast Dark and Light, recorded in a demo project. Each one links
+to a short animation of the same scene.
 
 ### Shell
 
 | Dark | Light |
 | --- | --- |
-| [![Dark: the terminal in the earlier High Contrast palette showing a coloured git log, a ripgrep search and a diff summary](docs/demo/shell-dark.webp)](docs/demo/terminal-dark.gif) | [![Light: the terminal in the earlier High Contrast palette showing a coloured git log, a ripgrep search and a diff summary](docs/demo/shell-light.webp)](docs/demo/terminal-light.gif) |
+| [![Dark: the shell showing a coloured git log, a ripgrep search and a diff summary in a demo project](docs/demo/shell-dark.webp)](docs/demo/terminal-dark.gif) | [![Light: the shell showing a coloured git log, a ripgrep search and a diff summary in a demo project](docs/demo/shell-light.webp)](docs/demo/terminal-light.gif) |
 
 ### Neovim
 
 | Dark | Light |
 | --- | --- |
-| [![Dark: Neovim with the high-contrast colour scheme editing a Python file, with the status line at the bottom](docs/demo/neovim-dark.webp)](docs/demo/terminal-dark.gif) | [![Light: Neovim with the high-contrast colour scheme editing a Python file, with the status line at the bottom](docs/demo/neovim-light.webp)](docs/demo/terminal-light.gif) |
+| [![Dark: Neovim with the Zacess colour scheme editing a Python file, with relative line numbers and the status line at the bottom](docs/demo/neovim-dark.webp)](docs/demo/terminal-dark.gif) | [![Light: Neovim with the Zacess colour scheme editing a Python file, with relative line numbers and the status line at the bottom](docs/demo/neovim-light.webp)](docs/demo/terminal-light.gif) |
 
 ### tmux
 
 | Dark | Light |
 | --- | --- |
-| [![Dark: tmux with four coloured tabs named editor, git, search and shell, the editor window split into Neovim, git log, ripgrep and diff panes](docs/demo/tmux-dark.webp)](docs/demo/tmux-dark.gif) | [![Light: tmux with four coloured tabs named editor, git, search and shell, the editor window split into Neovim, git log, ripgrep and diff panes](docs/demo/tmux-light.webp)](docs/demo/tmux-light.gif) |
+| [![Dark: tmux with four coloured tabs named editor, git, search and shell, the editor window split into Neovim, a ripgrep search, a git log and a diff summary](docs/demo/tmux-dark.webp)](docs/demo/tmux-dark.gif) | [![Light: tmux with four coloured tabs named editor, git, search and shell, the editor window split into Neovim, a ripgrep search, a git log and a diff summary](docs/demo/tmux-light.webp)](docs/demo/tmux-light.gif) |
+
+### Re-recording
+
+Each scene is a [VHS](https://github.com/charmbracelet/vhs) script in [`docs/demo`](docs/demo),
+recorded once per theme in a throwaway demo under `/tmp/demo`, so the shots show the real config
+with nothing personal on screen. The colours come from
+[Zacess Themes](https://github.com/zacesshq/themes).
+
+```sh
+brew install vhs gifsicle webp
+docs/demo/record.sh           # every scene, dark and light
+docs/demo/record.sh tmux      # one scene, by its file name
+```
 
 ## What's here
 
