@@ -6,29 +6,42 @@
 
 ## In action
 
-Screenshots in Zacess Deep Contrast Dark and Light, recorded in a demo project. Each one links
-to a short animation of the same scene.
+Screenshots in four Zacess themes, Deep Contrast Dark and Light, Yellow on Black and Cream,
+recorded in a demo project. Each one links to a short animation of the same scene.
 
 ### Shell
 
-| Dark | Light |
+| Deep Contrast Dark | Deep Contrast Light |
 | --- | --- |
 | [![Dark: the shell showing a coloured git log, a ripgrep search and a diff summary in a demo project](docs/demo/shell-dark.webp)](docs/demo/terminal-dark.gif) | [![Light: the shell showing a coloured git log, a ripgrep search and a diff summary in a demo project](docs/demo/shell-light.webp)](docs/demo/terminal-light.gif) |
 
+| Yellow on Black | Cream |
+| --- | --- |
+| [![Yellow on Black: the shell showing a coloured git log, a ripgrep search and a diff summary in a demo project](docs/demo/shell-yellow-on-black.webp)](docs/demo/terminal-yellow-on-black.gif) | [![Cream: the shell showing a coloured git log, a ripgrep search and a diff summary in a demo project](docs/demo/shell-cream.webp)](docs/demo/terminal-cream.gif) |
+
 ### Neovim
 
-| Dark | Light |
+| Deep Contrast Dark | Deep Contrast Light |
 | --- | --- |
 | [![Dark: Neovim with the Zacess colour scheme editing a Python file, with relative line numbers and the status line at the bottom](docs/demo/neovim-dark.webp)](docs/demo/terminal-dark.gif) | [![Light: Neovim with the Zacess colour scheme editing a Python file, with relative line numbers and the status line at the bottom](docs/demo/neovim-light.webp)](docs/demo/terminal-light.gif) |
 
+| Yellow on Black | Cream |
+| --- | --- |
+| [![Yellow on Black: Neovim with the Zacess colour scheme editing a Python file, with relative line numbers and the status line at the bottom](docs/demo/neovim-yellow-on-black.webp)](docs/demo/terminal-yellow-on-black.gif) | [![Cream: Neovim with the Zacess colour scheme editing a Python file, with relative line numbers and the status line at the bottom](docs/demo/neovim-cream.webp)](docs/demo/terminal-cream.gif) |
+
 ### tmux
 
-| Dark | Light |
+| Deep Contrast Dark | Deep Contrast Light |
 | --- | --- |
 | [![Dark: tmux with four coloured tabs named editor, git, search and shell, the editor window split into Neovim, a ripgrep search, a git log and a diff summary](docs/demo/tmux-dark.webp)](docs/demo/tmux-dark.gif) | [![Light: tmux with four coloured tabs named editor, git, search and shell, the editor window split into Neovim, a ripgrep search, a git log and a diff summary](docs/demo/tmux-light.webp)](docs/demo/tmux-light.gif) |
 
+| Yellow on Black | Cream |
+| --- | --- |
+| [![Yellow on Black: tmux with four coloured tabs named editor, git, search and shell, the editor window split into Neovim, a ripgrep search, a git log and a diff summary](docs/demo/tmux-yellow-on-black.webp)](docs/demo/tmux-yellow-on-black.gif) | [![Cream: tmux with four coloured tabs named editor, git, search and shell, the editor window split into Neovim, a ripgrep search, a git log and a diff summary](docs/demo/tmux-cream.webp)](docs/demo/tmux-cream.gif) |
+
 The shots show the real config in a throwaway demo project, in
-[Zacess Themes](https://github.com/zacesshq/themes) Deep Contrast Dark and Light.
+[Zacess Themes](https://github.com/zacesshq/themes) Deep Contrast Dark and Light, Yellow on Black
+and Cream.
 
 ## What's here
 
