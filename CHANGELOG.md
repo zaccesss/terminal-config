@@ -9,8 +9,11 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.0.1] - 2026-10-22
+
 ### Changed
 
+- The Linux and Windows Alacritty, Kitty and Hyper configs use `GeistMono Nerd Font` in place of DejaVu Sans Mono and Consolas, so Nerd Font prompt symbols render. macOS keeps SF Mono, whose licence limits it to Apple's own apps. `guides/reference.md` explains the split and where to get the font.
 - Every terminal now carries all eight Zacess themes from Zacess Themes 0.3.0, generated from `palette/zacess.json`, which replaces the High Contrast palette. Zacess Deep Contrast Dark is the default and stays fixed whatever the system appearance. Generated files are named `zacess-<theme>`, `guides/high-contrast.md` is now `guides/themes.md` and the Windows Terminal fragment is `windows/windows-terminal/zacess.json`. Kitty includes the default theme and Alacritty imports it. The Terminal.app appearance helper takes its two profile names as arguments and is built but not started.
 
 ### Added
