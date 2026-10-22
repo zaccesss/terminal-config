@@ -31,11 +31,15 @@ each app.
 | Platform | Font | Why |
 | --- | --- | --- |
 | macOS | `SF Mono` | Ships with macOS. |
-| Linux | `DejaVu Sans Mono` | Present on most distributions. |
-| Windows | `Consolas` | Ships with Windows. |
+| Linux | `GeistMono Nerd Font` | Free, close to SF Mono's look and carries the Nerd Font symbols a prompt uses. |
+| Windows | `GeistMono Nerd Font` | Same font as Linux. |
 
-Swap in any monospaced font you have installed. A patched Nerd Font is needed if you use icons in
-your prompt.
+SF Mono's licence limits it to Apple's own apps, so it is not offered on Linux or Windows. Install
+`GeistMono Nerd Font` (released under the SIL Open Font License) from the
+[Nerd Fonts releases](https://github.com/ryanoasis/nerd-fonts/releases) before using the Linux or
+Windows configs. A terminal whose font is missing falls back to its own default monospaced font
+rather than failing, but prompt icons will not render. Swap in any monospaced font you have
+installed; a patched Nerd Font is needed if you use icons in your prompt.
 
 ## Why no Kitty on Windows
 
