@@ -11,4 +11,8 @@ This repository's terminal configuration has moved to the `terminal/terminal` fo
 > [!NOTE]
 > This repository is archived and read-only.
 
-![The shell in the Zacess Dark theme](docs/demo/shell-dark.webp)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/demo/shell-dark.webp">
+  <source media="(prefers-color-scheme: light)" srcset="docs/demo/shell-light.webp">
+  <img alt="The shell in the Zacess Dark theme (the Zacess Light theme in light mode)" src="docs/demo/shell-dark.webp">
+</picture>
